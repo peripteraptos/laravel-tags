@@ -1,3 +1,5 @@
+# Modified version without translation and need for json capable database
+
 # Add tags and taggable behaviour to a Laravel app
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-tags.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-tags)
@@ -7,7 +9,7 @@
 
 This package offers taggable behaviour for your models. After the package is installed the only thing you have to do is add the `HasTags` trait to an Eloquent model to make it taggable. 
 
-But we didn't stop with the regular tagging capabilities you find in every package. Laravel Tags comes with batteries included. Out of the box it has support for [translating tags](https://docs.spatie.be/laravel-tags/v2/advanced-usage/adding-translations), [multiple tag types](https://docs.spatie.be/laravel-tags/v2/advanced-usage/using-types) and [sorting capabilities](https://docs.spatie.be/laravel-tags/v2/advanced-usage/sorting-tags).
+But we didn't stop with the regular tagging capabilities you find in every package. Laravel Tags comes with batteries included. Out of the box it has support for [~~translating tags~~](https://docs.spatie.be/laravel-tags/v2/advanced-usage/adding-translations), [multiple tag types](https://docs.spatie.be/laravel-tags/v2/advanced-usage/using-types) and [sorting capabilities](https://docs.spatie.be/laravel-tags/v2/advanced-usage/sorting-tags).
 
 You'll find the documentation on https://docs.spatie.be/laravel-tags/v2/introduction/.
 
@@ -48,20 +50,6 @@ NewsItem::withAnyTags(['first tag', 'second tag'])->get();
 
 //retrieve models that have all of the given tags
 NewsItem::withAllTags(['first tag', 'second tag'])->get();
-
-//translating a tag
-$tag = Tag::findOrCreate('my tag');
-$tag->setTranslation('name', 'fr', 'mon tag');
-$tag->setTranslation('name', 'nl', 'mijn tag');
-$tag->save();
-
-//getting translations
-$tag->translate('name'); //returns my name
-$tag->translate('name', 'fr'); //returns mon tag (optional locale param)
-
-//convenient translations through taggable models
-$newsItem->tagsTranslated();// returns tags with slug_translated and name_translated properties
-$newsItem->tagsTranslated('fr');// returns tags with slug_translated and name_translated properties set for specified locale
 
 //using tag types
 $tag = Tag::findOrCreate('tag 1', 'my type');
